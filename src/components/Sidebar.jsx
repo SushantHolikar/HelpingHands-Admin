@@ -51,7 +51,7 @@ const Sidebar = () => {
               onClick={() => setSelected(index)}
             >
               <item.icon />
-            <Link to={`http://localhost:3000/${index}`} style={{textDecoration:"none" ,color:"black", listStyle:"none",fontStyle:"none"}}>
+            <Link to={`https://helpinghandsadmin.netlify.app/${index}`} style={{textDecoration:"none" ,color:"black", listStyle:"none",fontStyle:"none"}}>
               <span>{item.heading}</span>
             </Link>
             </div>

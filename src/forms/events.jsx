@@ -54,7 +54,7 @@ function EventForm() {
                         <MDBCol sm="6">
                                 <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
                                     <div className="form-column">
-                                    <button onClick={() => (window.location.href = "http://localhost:3000/0")} style={{color:"white", backgroundColor:"red", border:"none", borderRadius:"2rem"}}>Back</button>
+                                    <button onClick={() => (window.location.href = "https://helpinghandsadmin.netlify.app/0")} style={{color:"white", backgroundColor:"red", border:"none", borderRadius:"2rem"}}>Back</button>
                                     <div style={{ paddingTop: "0px", paddingLeft: "50px", fontSize: "15px" }}>
 
                                         <h3 className="fw-normal mb-2 ps-5 pb-3" style={{ letterSpacing: "1px", fontSize: "35px", textAlign: "center" }}>
