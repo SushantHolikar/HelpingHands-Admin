@@ -41,7 +41,6 @@ function Form() {
               <div style={{ paddingTop: "35px", paddingLeft: "50px", fontSize: "18px" }}>
                 <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
                   <div className="form-column">
-                  <button onClick={() => (window.location.href = "https://helpinghandsadmin.netlify.app/0")} style={{color:"white", backgroundColor:"red", border:"none", borderRadius:"2rem"}}>Back</button>
 
                     <h3 className="fw-normal mb-3 ps-5 pb-3" style={{ letterSpacing: "1px", fontSize: "35px", textAlign: "center" }}>
                       Article
