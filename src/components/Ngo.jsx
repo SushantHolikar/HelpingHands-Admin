@@ -95,7 +95,7 @@ const NgoPage = () => {
     setRows(user)
   }
   useEffect(() => {
-    // localhost:5000/api/auth/getuser
+    
     const getUserProfile = async () => {
       const response = await fetch(`${host}/api/auth/getuser`, {
         method: 'GET'

@@ -1,170 +1,280 @@
-import React, { useState } from "react";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBIcon, MDBInput } from "mdb-react-ui-kit";
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import {AssuredWorkload, Person } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function CreateNgo() {
-    const navigate = useNavigate()
-    const [eventtitle, setTitle] = useState("");
-    const [eventdescription, setDescription] = useState("");
-    const [eventsummary, setSummary] = useState("");
-    const [eventlocation, setLocation] = useState("");
-    const [eventdate, setDate] = useState("");
-    const [eventimageLink, setImageLink] = useState("");
-    const [eventphoneNumber, setPhoneNumber] = useState("");
-    const [result, setResult] = useState(null)
+const theme = createTheme();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post("https://helpinghands-backend.onrender.com/events/create", {
-            title: eventtitle,
-            desc: eventdescription,
-            summary: eventsummary,
-            location: eventlocation,
-            time: eventdate,
-            image: eventimageLink,
-            phone: eventphoneNumber
-        })
-            // Do something with the form data (e.g. send it to a backend API)
-            .then((response) => {
-                console.log(response)
-                navigate("/3")
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+function App() {
 
-        setTitle("");
-        setDescription("");
-        setImageLink("");
-        setSummary("");
-        setLocation("");
-        setPhoneNumber("");
-        setDate("");
-    };
+  
+  const [title, setTitle] = useState("");
+  const [detail, setDetail] = useState("");
+  const [summary, setSummary] = useState("");
+  const [label, setLabel] = useState("");
+  const [goalFund, setGoalFund] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState("");
+  
 
-    return (
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
 
-        <div >
-            <MDBContainer lg>
-                <div className="container2">
-                    <MDBRow>
-                        <MDBCol sm="6">
-                            <div style={{ paddingTop: "0px", paddingLeft: "50px", fontSize: "15px" }}>
-                                <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-                                    <div className="form-column">
-                                        <h3 className="fw-normal mb-2 ps-5 pb-3" style={{ letterSpacing: "1px", fontSize: "35px", textAlign: "center" }}>
-                                            Event
-                                        </h3>
-                                        <MDBRow>
-                                            <MDBCol sm="12">
-                                                <MDBInput wrapperClass="mb-4 mx-5 w-100" placeholder="Title" type="text" id="title" value={eventtitle} onChange={(e) => setTitle(e.target.value)} required />
-                                            </MDBCol>
-                                            <MDBCol sm="12">
-                                                <MDBInput
-                                                    wrapperClass="mb-4 mx-5 w-100"
-                                                    placeholder="Image Link"
-                                                    type="text"
-                                                    id="imageLink"
-                                                    value={eventimageLink}
-                                                    onChange={(e) => setImageLink(e.target.value)}
-                                                    required
-                                                />
-                                            </MDBCol>
-                                            <MDBRow sm="12">
-                                                <MDBCol>
-                                            <MDBInput
-                                                    wrapperClass="mb-4 mx-5 w-100"
-                                                    placeholder="Location"
-                                                    type="text"
-                                                    id="location"
-                                                    value={eventlocation}
-                                                    onChange={(e) => setLocation(e.target.value)}
-                                                    required
+  const handleDetailChange = (e) => {
+    setDetail(e.target.value);
+  };
 
-                                                />
-                                                </MDBCol>
-                                                <MDBCol >
-                                                <MDBInput
-                                                    wrapperClass="mb-4 mx-5 w-100"
-                                                    placeholder="Phone Number"
-                                                    type="text"
-                                                    id="phoneNumber"
-                                                    value={eventphoneNumber}
-                                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                                    required
+  const handleSummaryChange = (e) => {
+    setSummary(e.target.value);
+  };
 
-                                                />
-                                            </MDBCol>
-                                            </MDBRow>
-                                            <MDBRow>
-                                            <MDBCol sm="12">
-                                                <MDBInput
-                                                    wrapperClass="mb-4 mx-5 w-100"
-                                                    placeholder="Date and Time (Eg: 9:00 am 15 May)"
-                                                    type="text"
-                                                    id="date"
-                                                    value={eventdate}
-                                                    onChange={(e) => setDate(e.target.value)}
-                                                />
-                                                </MDBCol>
-                                            </MDBRow>
-                                            <MDBCol sm="12">
+  const handleGoalFundChange = (e) => {
+    setGoalFund(e.target.value);
+  };
 
-                                            </MDBCol>
-                                            
-                                            <MDBCol sm="12" >
-                                                <textarea
 
-                                                    placeholder="Summary"
-                                                    type="text"
-                                                    id="description"
-                                                    value={eventdescription}
-                                                    onChange={(e) => setDescription(e.target.value)}
-                                                    className="form-control mx-5 mt-1.5"
-                                                    rows="5"
-                                                    style={{ fontSize: '17px' }}
-                                                />
-                                            </MDBCol>
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
-                                            <MDBCol sm="12" >
-                                                <textarea
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
 
-                                                    placeholder="Description"
-                                                    type="text"
-                                                    id="summary"
-                                                    value={eventsummary}
-                                                    onChange={(e) => setSummary(e.target.value)}
-                                                    className="form-control mx-5 mt-2"
-                                                    rows="5"
-                                                    style={{ fontSize: '17px' }}
-                                                />
-                                            </MDBCol>
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  };
 
-                                            <MDBCol sm="12" style={{ paddingTop: '20px' }}>
-                                                <MDBBtn className="px-5 mx-5 w-50" color="info" size="lg" onClick={handleSubmit} style={{ color: 'white' }}>
-                                                    Submit
-                                                </MDBBtn>
-                                            </MDBCol>
-                                        </MDBRow>
-                                    </div>
-                                </div>
-                            </div>
-                        </MDBCol>
+  const handleImageChange = (e) => {
+    setImage(e.target.value);
+  };
+
+  const handleLabelChange = (e) => {
+    setLabel(e.target.value);
+  };
+  
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hai bhai")
+    axios.post("https://helpinghands-backend.onrender.com/donationcards/create", {
+      
+    title: title,
+      label: label,
+      detail: detail,
+      summary: summary,
+      goalFund: goalFund,
+      name: name,
+      phone: phone,
+      location: location,
+      image: image
+      
+     
+    })
+    .then((response) => {
+      console.log(response)
+      alert(response.data.message)
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  setTitle("");
+  setDetail("");
+  setSummary("");
+  setLabel("");
+  setGoalFund("");
+  setName("");
+  setPhone("");
+  setLocation("");
+  setImage("");
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '97vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://img.freepik.com/free-photo/hand-with-coins-economy_23-2148568038.jpg?w=360&t=st=1681846575~exp=1681847175~hmac=466a680191425ebaf54500c4111a1cab93dda80244a97914226bcb1d8b1cb018)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            // height:'90vh'
+          }}
+          style={{ "minWidth": "100px", "maxWidth": "497px", "maxHeight": "100vh" }}
+
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ minWidth: "67.6%" }}
+        >
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              mt: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
 
 
 
-                        <div className="image-column">
-                            <MDBCol sm='6' className='d-none d-sm-block px-0'>
-                                <img src="https://img.freepik.com/free-vector/wall-post-illustration-concept_114360-907.jpg?w=740&t=st=1681860682~exp=1681861282~hmac=0a46bbd03af14120384ce9f796257668fc42d928f51453d07eb29e8620ba8695" alt="Login image" className="w-125"
-                                    style={{ alignContent: 'flex-end', height: '45rem', width: '35rem' }} />
-                            </MDBCol>
-                        </div>
-                    </MDBRow>
-                </div>
-            </MDBContainer>
-        </div>
-    );
-};
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'black', color:"#FF8000" }}>
+              <AssuredWorkload />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Donation Request
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 
-export default CreateNgo;
+
+              <TextField
+              onChange={handleTitleChange}
+                margin="normal"
+                required
+                fullWidth
+                name="title"
+                label="Title"
+                type="title"
+                id="title"
+                value={title}
+              />
+              <TextField
+              onChange={handleDetailChange}
+                margin="normal"
+                required
+                fullWidth
+                id="detail"
+                label="Details"
+                name="detail"
+                autoFocus
+                value={detail}
+              />
+              <TextField
+              onChange={handleSummaryChange}
+                margin="normal"
+                fullWidth
+                value={summary}
+                name="summary"
+                label="Summary"
+                type="summary"
+                id="summary"
+              />
+
+
+
+
+              <Grid container spacing={2}>
+
+                <Grid item xs={12} sm={6}><TextField
+                onChange={handleGoalFundChange}
+                  margin="normal"
+                  required
+                  fullWidth
+                  value={goalFund}
+                  name="goalFund"
+                  label="Goal Fund"
+                  id="goalFund"
+                /></Grid>
+                <Grid item xs={12} sm={6}><TextField
+                  onChange={handleLabelChange}
+                  margin="normal"
+                  required
+                  fullWidth
+                  value={label}
+                  name="label"
+                  label="Labels"
+                  id="label"
+                /></Grid>
+</Grid>
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Avatar sx={{ m: 1, bgcolor: 'black', color: "#FF8000" }}> <Person /> </Avatar>
+</div>
+<Typography component="h1" variant="h5" style={{textAlign:"center"}}>
+              Fundraiser Info
+            </Typography>
+
+            <Grid container spacing={2}>
+
+                <Grid item xs={12} sm={6}><TextField
+                onChange={handleNameChange}
+                  margin="normal"
+                  required
+                  value={name}
+                  fullWidth
+                  name="name"
+                  label="Name"
+                  id="name"
+                /></Grid>
+                <Grid item xs={12} sm={6}><TextField
+                onChange={handlePhoneChange}
+                  margin="normal"
+                  fullWidth
+                  required
+                  value={phone}
+                  name="phone"
+                  label="Phone"
+                  id="phone"
+                /></Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                  onChange={handleLocationChange}
+                    required
+                    fullWidth
+                    value={location}
+                    name="location"
+                    label="City"
+                    id="location"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                  onChange={handleImageChange}
+                    required
+                    fullWidth
+                    value={image}
+                    name="image"
+                    label="Image Link"
+                    id="image"
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                onClick={handleSubmit}
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Submit
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
+}
+
+export default App;

@@ -53,7 +53,7 @@ const host = "https://helpinghands-backend.onrender.com"
   }
 
   useEffect(() => {
-    // localhost:5000/api/auth/getuser
+  
     const getUserProfile = async () => {
       const response = await fetch(`${host}/api/auth/getuserforhome`, {
         method: 'GET'

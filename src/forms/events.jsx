@@ -14,7 +14,6 @@ function EventForm() {
     const [eventdate, setDate] = useState("");
     const [eventimageLink, setImageLink] = useState("");
     const [eventphoneNumber, setPhoneNumber] = useState("");
-    const [result, setResult] = useState(null)
 
     const handleSubmit = (e) => {
         e.preventDefault();
